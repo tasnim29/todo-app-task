@@ -8,11 +8,11 @@ const Filter = () => {
   return (
     <div className="pt-6">
       <div
-        className={`max-w-7xl mx-auto py-5 px-10 rounded-lg shadow-xl transition-colors duration-300
+        className={`max-w-7xl mx-auto py-5 px-10 rounded-lg shadow-lg transition-colors duration-300
           ${
             theme === "dark"
-              ? "bg-gray-900 text-gray-100 shadow-gray-700"
-              : "bg-white text-gray-800 shadow-gray-300"
+              ? "bg-gray-900 text-gray-100 shadow-gray-300"
+              : "bg-white text-gray-800 shadow-gray-500"
           }
         `}
       >
@@ -26,7 +26,7 @@ const Filter = () => {
             {/* Search */}
             <div className="relative w-full md:w-64">
               <input
-                type="text"
+                type="search"
                 placeholder="Search tasks..."
                 className="w-full border border-gray-300 rounded-lg pl-10 pr-4 py-2 bg-[#F8FAFC] text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />

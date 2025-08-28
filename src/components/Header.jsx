@@ -7,11 +7,11 @@ const Header = () => {
   return (
     <div className="pt-20">
       <div
-        className={`max-w-7xl mx-auto py-5 px-10 rounded-lg shadow-xl transition-colors duration-300
+        className={`max-w-7xl mx-auto py-5 px-10 rounded-lg shadow-lg transition-colors duration-300
           ${
             theme === "dark"
-              ? "bg-gray-900 text-gray-100 shadow-gray-700"
-              : "bg-white text-gray-800 shadow-gray-300"
+              ? "bg-gray-900 text-gray-100 shadow-gray-300"
+              : "bg-white text-gray-800 shadow-gray-500"
           }
         `}
       >

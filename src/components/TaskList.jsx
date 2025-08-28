@@ -3,6 +3,7 @@ import { TaskContext } from "../context/TaskContext";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import EditModal from "./EditModal";
 import toast from "react-hot-toast";
+import { BsCalendar2DateFill } from "react-icons/bs";
 
 const TaskList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -30,17 +31,17 @@ const TaskList = () => {
         {filtered.map((todo) => (
           <div
             key={todo.id}
-            className={`grid grid-cols-1 md:grid-cols-3 items-center gap-4  p-6 rounded-lg shadow-sm ${
+            className={`grid grid-cols-1 md:grid-cols-3 items-center gap-4  p-6 rounded-lg shadow-lg ${
               theme === "dark"
-                ? "bg-gray-900 text-gray-100 shadow-gray-700"
-                : "bg-white text-gray-800 shadow-gray-300"
+                ? "bg-gray-900 text-gray-100 shadow-gray-300"
+                : "bg-white text-gray-800 shadow-gray-500"
             }`}
           >
             {/* title and description */}
             <div className="flex items-center gap-3 ">
               <input
                 type="checkbox"
-                className="w-6 h-6 accent-green-500 "
+                className=" accent-green-500 cursor-pointer"
                 checked={todo.completed}
                 onChange={() => toggleTodo(todo.id)}
               />
@@ -54,7 +55,10 @@ const TaskList = () => {
             </div>
 
             {/* date */}
-            <div className="text-center md:text-left md:ml-52">
+            <div className="text-center md:text-left md:ml-52 flex gap-2 items-center">
+              <span>
+                <BsCalendar2DateFill />
+              </span>
               <p>{todo.date}</p>
             </div>
 
@@ -62,7 +66,7 @@ const TaskList = () => {
             <div className="flex justify-center md:justify-end gap-4">
               <button
                 onClick={() => openModal(todo)}
-                className="text-[#A1A1AA] hover:text-blue-700"
+                className="text-[#A1A1AA] hover:text-blue-700 cursor-pointer"
               >
                 <FaEdit size={24} />
               </button>
@@ -71,7 +75,7 @@ const TaskList = () => {
                   deleteTodo(todo.id);
                   toast.success("Task deleted!");
                 }}
-                className="text-[#A1A1AA] hover:text-red-700"
+                className="text-[#A1A1AA] hover:text-red-700 cursor-pointer"
               >
                 <FaTrash size={24} />
               </button>
