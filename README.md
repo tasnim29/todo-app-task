@@ -29,9 +29,10 @@ npm run dev
 4. Actions: addTodo , editTodo , toggleTodo , deleteTodo , clearCompleted ,setFilter
 5. UI Structure:
 
----Header: live stats + Darkmode
+````---Header: live stats + Darkmode
 ---Filter: All / Active / Completed + logo
 ---AddTaskModal: Add button + modal for adding task
 ---EditModal: modal for editing task
 ---TaskList: shows all task
----DarkMode: dark mode button
+---DarkMode: dark mode button```
+````
