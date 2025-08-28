@@ -5,7 +5,7 @@ import DarkMode from "./DarkMode";
 const Header = () => {
   const { total, completed, remaining, theme } = use(TaskContext);
   return (
-    <div className="pt-20">
+    <div className="">
       <div
         className={`max-w-7xl mx-auto py-5 px-10 rounded-lg shadow-lg transition-colors duration-300
           ${

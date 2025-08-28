@@ -13,7 +13,7 @@ function App() {
     <>
       <Toaster position="top-center" reverseOrder={false} />
       <div
-        className={`min-h-screen px-5 ${
+        className={`min-h-screen px-5 py-10 md:py-16 ${
           theme === "dark" ? "bg-gray-900" : "bg-[#F4F4F5] "
         }`}
       >
