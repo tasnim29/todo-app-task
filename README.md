@@ -1,12 +1,37 @@
-# React + Vite
+# Todo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Setup & Run Instructions
 
-Currently, two official plugins are available:
+### Clone Repository
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+git clone https://github.com/your-username/todo-app-task.git
+cd todo-app
+```
 
-## Expanding the ESLint configuration
+### Install Dependencies
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm install
+```
+
+### Run
+
+```bash
+npm run dev
+```
+
+## Architecture Notes
+
+1. Framework: React
+2. State Management: Context API
+3. Global State: Task Provider component(todos state)
+4. Actions: addTodo , editTodo , toggleTodo , deleteTodo , clearCompleted ,setFilter
+5. UI Structure:
+
+---Header: live stats + Darkmode
+---Filter: All / Active / Completed + logo
+---AddTaskModal: Add button + modal for adding task
+---EditModal: modal for editing task
+---TaskList: shows all task
+---DarkMode: dark mode button
