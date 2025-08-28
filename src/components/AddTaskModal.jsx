@@ -2,16 +2,19 @@ import React, { use, useState } from "react";
 
 import { v4 as uuidv4 } from "uuid";
 import { TaskContext } from "../context/TaskContext";
+import toast from "react-hot-toast";
 
 const AddTaskModal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+  const [loading, setLoading] = useState(false);
 
   const { addTodo, theme } = use(TaskContext);
 
   const handleAddTask = (e) => {
     e.preventDefault();
+    setLoading(true);
     const title = e.target.title.value;
     const date = e.target.date.value;
     const description = e.target.description.value;
@@ -21,11 +24,14 @@ const AddTaskModal = () => {
       date,
       description,
     };
-    addTodo(newTask);
-    console.log(newTask);
 
-    e.target.reset();
-    setIsModalOpen(false);
+    setTimeout(() => {
+      addTodo(newTask);
+      setLoading(false);
+      e.target.reset();
+      setIsModalOpen(false);
+      toast.success("Task added successfully");
+    }, 2000);
   };
 
   return (
@@ -90,7 +96,13 @@ const AddTaskModal = () => {
                   type="submit"
                   className="bg-[#15803d] text-white px-8 py-1 rounded-sm cursor-pointer"
                 >
-                  Save
+                  {loading ? (
+                    <div>
+                      <span className="loading loading-spinner loading-xl"></span>
+                    </div>
+                  ) : (
+                    "save"
+                  )}
                 </button>
               </div>
             </form>

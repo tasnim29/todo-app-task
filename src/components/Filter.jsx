@@ -22,7 +22,6 @@ const Filter = () => {
             <img className="h-10 w-auto" src={logo} alt="Logo" />
           </li>
 
-          {/* Search + Dropdown + Button */}
           <li className="flex flex-col md:flex-row gap-3 md:gap-5 w-full md:w-auto items-center justify-end">
             {/* Search */}
             <div className="relative w-full md:w-64">
@@ -40,7 +39,7 @@ const Filter = () => {
               onChange={(e) => setFilter(e.target.value)}
               className="border border-gray-300 rounded-lg px-4 py-2 text-gray-700 bg-[#F4F4F5] focus:outline-none focus:ring-2 focus:ring-blue-500 w-full md:w-auto"
             >
-              <option value="">All</option>
+              <option value="all">all</option>
               <option value="active">Active</option>
               <option value="completed">Completed</option>
             </select>

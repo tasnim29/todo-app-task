@@ -2,6 +2,7 @@ import React, { use, useState } from "react";
 import { TaskContext } from "../context/TaskContext";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import EditModal from "./EditModal";
+import toast from "react-hot-toast";
 
 const TaskList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -66,7 +67,10 @@ const TaskList = () => {
                 <FaEdit size={24} />
               </button>
               <button
-                onClick={() => deleteTodo(todo.id)}
+                onClick={() => {
+                  deleteTodo(todo.id);
+                  toast.success("Task deleted!");
+                }}
                 className="text-[#A1A1AA] hover:text-red-700"
               >
                 <FaTrash size={24} />

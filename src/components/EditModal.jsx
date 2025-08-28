@@ -1,11 +1,13 @@
 import React, { use, useEffect, useState } from "react";
 import { TaskContext } from "../context/TaskContext";
+import toast from "react-hot-toast";
 
 const EditModal = ({ closeModal, isModalOpen, task }) => {
   const { editTodo, theme } = use(TaskContext);
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (task) {
@@ -16,9 +18,16 @@ const EditModal = ({ closeModal, isModalOpen, task }) => {
   }, [task]);
 
   const handleEditTask = (e) => {
+    setLoading(true);
     e.preventDefault();
-    editTodo(task.id, title, description);
-    closeModal();
+
+    setTimeout(() => {
+      editTodo(task.id, title, description);
+      setLoading(false);
+      e.target.reset();
+      closeModal();
+      toast.success("Successfully edited");
+    }, 2000);
   };
 
   if (!isModalOpen) return null;
@@ -74,7 +83,13 @@ const EditModal = ({ closeModal, isModalOpen, task }) => {
                 type="submit"
                 className="bg-[#15803d] text-white px-8 py-1 rounded-sm cursor-pointer"
               >
-                Edit
+                {loading ? (
+                  <div>
+                    <span className="loading loading-spinner loading-xl"></span>
+                  </div>
+                ) : (
+                  "Edit"
+                )}
               </button>
             </div>
           </form>

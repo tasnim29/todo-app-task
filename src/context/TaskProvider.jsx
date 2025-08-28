@@ -16,7 +16,7 @@ const TaskProvider = ({ children }) => {
     const saved = localStorage.getItem("todos");
     return saved ? JSON.parse(saved) : [];
   });
-  const [filter, setFilter] = useState("all"); // all | active | completed
+  const [filter, setFilter] = useState("all");
 
   // Persist todos to localStorage
   useEffect(() => {
