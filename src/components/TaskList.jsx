@@ -1,8 +1,20 @@
-import React, { use } from "react";
+import React, { use, useState } from "react";
 import { TaskContext } from "../context/TaskContext";
+import { FaTrash, FaEdit } from "react-icons/fa";
+import EditModal from "./EditModal";
 
 const TaskList = () => {
-  const { todos, filter, toggleTodo, editTodo, deleteTodo } = use(TaskContext);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentTask, setCurrentTask] = useState(null);
+  const openModal = (task) => {
+    setCurrentTask(task);
+    setIsModalOpen(true);
+  };
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setCurrentTask(null);
+  };
+  const { todos, filter, toggleTodo, deleteTodo, theme } = use(TaskContext);
   const filtered = todos.filter((todo) =>
     filter === "all"
       ? true
@@ -13,16 +25,21 @@ const TaskList = () => {
   return (
     <div className="max-w-7xl mx-auto py-8">
       {" "}
-      <div className=" space-y-2">
+      <div className=" space-y-4">
         {filtered.map((todo) => (
           <div
             key={todo.id}
-            className="flex items-center justify-between bg-white py-8 rounded-lg"
+            className={`grid grid-cols-1 md:grid-cols-3 items-center gap-4  p-6 rounded-lg shadow-sm ${
+              theme === "dark"
+                ? "bg-gray-900 text-gray-100 shadow-gray-700"
+                : "bg-white text-gray-800 shadow-gray-300"
+            }`}
           >
             {/* title and description */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3 ">
               <input
                 type="checkbox"
+                className="w-6 h-6 accent-green-500 "
                 checked={todo.completed}
                 onChange={() => toggleTodo(todo.id)}
               />
@@ -36,28 +53,33 @@ const TaskList = () => {
             </div>
 
             {/* date */}
-            <div>
+            <div className="text-center md:text-left md:ml-52">
               <p>{todo.date}</p>
             </div>
 
             {/* buttons */}
-            <div>
+            <div className="flex justify-center md:justify-end gap-4">
               <button
-                onClick={(e) => editTodo(todo.id, e.target.value)}
-                className="bg-blue-500 px-5 py-1"
+                onClick={() => openModal(todo)}
+                className="text-[#A1A1AA] hover:text-blue-700"
               >
-                Edit
+                <FaEdit size={24} />
               </button>
               <button
                 onClick={() => deleteTodo(todo.id)}
-                className="text-red-500"
+                className="text-[#A1A1AA] hover:text-red-700"
               >
-                Delete
+                <FaTrash size={24} />
               </button>
             </div>
           </div>
         ))}
       </div>
+      <EditModal
+        isModalOpen={isModalOpen}
+        closeModal={closeModal}
+        task={currentTask}
+      ></EditModal>
     </div>
   );
 };

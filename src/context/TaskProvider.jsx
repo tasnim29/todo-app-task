@@ -2,8 +2,17 @@ import React, { useEffect, useState } from "react";
 import { TaskContext } from "./TaskContext";
 
 const TaskProvider = ({ children }) => {
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+  useEffect(() => {
+    const root = window.document.documentElement;
+    // Remove old theme
+    root.classList.remove(theme === "light" ? "dark" : "light");
+    // Add current theme
+    root.classList.add(theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
   const [todos, setTodos] = useState(() => {
-    // Load from localStorage if exists
     const saved = localStorage.getItem("todos");
     return saved ? JSON.parse(saved) : [];
   });
@@ -27,8 +36,12 @@ const TaskProvider = ({ children }) => {
     );
   };
 
-  const editTodo = (id, title) => {
-    setTodos(todos.map((todo) => (todo.id === id ? { ...todo, title } : todo)));
+  const editTodo = (id, title, description) => {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, title, description } : todo
+      )
+    );
   };
 
   const deleteTodo = (id) => {
@@ -56,6 +69,8 @@ const TaskProvider = ({ children }) => {
     total,
     completed,
     remaining,
+    theme,
+    setTheme,
   };
 
   return <TaskContext value={information}>{children}</TaskContext>;

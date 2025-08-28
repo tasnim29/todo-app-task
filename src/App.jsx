@@ -1,13 +1,20 @@
+import { use } from "react";
 import "./App.css";
 import AddTaskModal from "./components/AddTaskModal";
 import Filter from "./components/Filter";
 import Header from "./components/Header";
 import TaskList from "./components/TaskList";
+import { TaskContext } from "./context/TaskContext";
 
 function App() {
+  const { theme } = use(TaskContext);
   return (
     <>
-      <div className="bg-[#F4F4F5] min-h-screen">
+      <div
+        className={`min-h-screen px-5 ${
+          theme === "dark" ? "bg-gray-900" : "bg-[#F4F4F5] "
+        }`}
+      >
         <Header></Header>
         <Filter></Filter>
         <AddTaskModal></AddTaskModal>

@@ -8,7 +8,7 @@ const AddTaskModal = () => {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  const { addTodo } = use(TaskContext);
+  const { addTodo, theme } = use(TaskContext);
 
   const handleAddTask = (e) => {
     e.preventDefault();
@@ -31,7 +31,13 @@ const AddTaskModal = () => {
   return (
     <div className="pt-8 max-w-7xl mx-auto">
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-semibold">Tasks</h1>
+        <h1
+          className={`text-3xl font-semibold ${
+            theme === "dark" ? "text-white" : "text-black"
+          }`}
+        >
+          Tasks
+        </h1>
         <button
           onClick={openModal}
           className="bg-[#15803d] text-white font-bold w-44 h-12 rounded-lg cursor-pointer"
@@ -42,7 +48,13 @@ const AddTaskModal = () => {
 
       {isModalOpen && (
         <div className="fixed inset-0 bg-black/30 bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-white rounded-lg shadow-lg w-full max-w-md p-6">
+          <div
+            className={`rounded-lg shadow-lg w-full max-w-md p-6 ${
+              theme === "dark"
+                ? "bg-gray-900 text-gray-100 shadow-gray-700"
+                : "bg-white text-gray-800 shadow-gray-300"
+            }`}
+          >
             <h2 className="text-2xl font-semibold mb-4">Task Details</h2>
 
             <form onSubmit={handleAddTask}>
